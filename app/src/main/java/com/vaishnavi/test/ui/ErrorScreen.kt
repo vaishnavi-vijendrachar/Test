@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.vaishnavi.test.R
 
@@ -24,7 +25,9 @@ fun ErrorScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Something went wrong. Try again later!", color = Color.White,
-            fontWeight = FontWeight.Medium,)
+        Text(
+            stringResource(id = R.string.error_message), color = Color.White,
+            fontWeight = FontWeight.Medium,
+        )
     }
 }

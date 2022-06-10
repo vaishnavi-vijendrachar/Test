@@ -11,7 +11,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -26,47 +28,46 @@ fun ComposeContainer(response: Response) {
         LazyColumn(
             Modifier
                 .background(Color.DarkGray.copy(alpha = 0.4f))
-                .padding(4.dp)
+                .padding(dimensionResource(id = R.dimen.padding_0_5x))
                 .fillMaxSize()
         ) {
             items(it) { item ->
                 if(!item.title.isNullOrEmpty()) {
-                    Card(Modifier.padding(4.dp)) {
+                    Card(Modifier.padding(dimensionResource(id = R.dimen.padding_0_5x))) {
                         Row(
                             Modifier
                                 .background(Color.Black.copy(0.9f))
-                                .padding(8.dp)
+                                .padding(dimensionResource(id = R.dimen.padding_1x))
                         ) {
                             val painter = rememberImagePainter(item.imageHref)
                             Image(
-
                                 painter = painter ?: painterResource(id = R.drawable.ic_placeholder),
-                                "Image",
+                                stringResource(id = R.string.content_description_image),
                                 modifier = Modifier
-                                    .height(150.dp)
-                                    .width(100.dp)
+                                    .height(dimensionResource(id = R.dimen.image_height))
+                                    .width(dimensionResource(id = R.dimen.image_width))
                                     .background(Color.DarkGray.copy(0.2f))
                             )
 
-                            Spacer(modifier = Modifier.padding(8.dp))
+                            Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_1x)))
 
                             Column(
                                 Modifier
                                     .fillMaxWidth()
 
                             ) {
-                                item.title?.let { it1 ->
+                                item.title?.let { title ->
                                     Text(
-                                        text = it1,
+                                        text = title,
                                         color = Color.White,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 16.sp
                                     )
                                 }
                                 Spacer(modifier = Modifier.padding(4.dp))
-                                item.description?.let { it1 ->
+                                item.description?.let { desc ->
                                     Text(
-                                        text = it1,
+                                        text = desc,
                                         color = Color.White,
                                         fontWeight = FontWeight.Normal,
                                         fontSize = 12.sp,

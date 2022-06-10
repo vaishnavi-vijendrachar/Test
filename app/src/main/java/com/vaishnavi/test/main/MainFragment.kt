@@ -36,20 +36,10 @@ class MainFragment : Fragment() {
         binding.composeView.setContent {
             LoadingScreen(1f)
         }
-//        if(mainViewModel.error.value == true) {
-//            lifecycleScope.launch {
-//                binding.composeView.setContent {
-//                    LoadingScreen(0f)
-//                    ErrorScreen()
-//                }
-//
-//            }
-//        }
         mainViewModel.getDataFromServer()
         return binding.root
     }
 
-    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
